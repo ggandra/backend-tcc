@@ -1,0 +1,14 @@
+{
+  "name": "backend-tcc",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "https://github.com/ggandra/backend-tcc.git",
+  "author": "ggandra <gandra.gabriel@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "knex": "^0.21.3",
+    "pg": "^8.3.0"
+  }
+}

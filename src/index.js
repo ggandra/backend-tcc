@@ -3,7 +3,7 @@ const cors = require('cors');
 const checker = require('./checker');
 const routes = require('./core/routes');
 
-class App{
+class App {
     constructor() {
         this.server = express();
 
@@ -16,7 +16,7 @@ class App{
         this.server.use('/api', routes)
     }
 
-    async middlewares(){
+    async middlewares() {
         this.server.use(cors());
         this.server.use(express.json());
         this.server.use('/health', checker);

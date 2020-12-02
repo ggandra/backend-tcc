@@ -1,4 +1,5 @@
 const knex = require('../../database');
+const bcrypt = require('bcrypt');
 
 module.exports = {
     async loginEstablishments(req, res) {
@@ -6,9 +7,15 @@ module.exports = {
         try {
             await knex('establishments').where({
                 username: username,
-                password: password
-            }).select('id', 'name', 'city', 'latitude', 'longitude').then((results) => {
-                return res.json({ result: results })
+            }).select('id', 'name', 'city', 'latitude', 'longitude', 'password').then((results) => {
+                bcrypt.compare(password, results[0].password, (err, result) => {
+                    if(result === true) {
+                        return res.json({result: results})
+                    } else {
+                        console.log(result)
+                        return res.status(400).send('Login Failed')
+                    }
+                })
             })
         } catch (error) {
             return res.json({ error: "Can't find the current user" });
